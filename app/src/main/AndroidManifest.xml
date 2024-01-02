@@ -19,7 +19,7 @@
         <service android:name="jade.android.RuntimeService" />
 
         <activity
-            android:name=".AndroidMobilityActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.MCCApp">
             <intent-filter>
@@ -28,6 +28,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".HostActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MCCApp">
+        </activity>
+
+        <activity
+            android:name=".ComputingDeviceActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MCCApp">
+        </activity>
+
     </application>
 
 </manifest>

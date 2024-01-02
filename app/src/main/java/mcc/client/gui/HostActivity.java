@@ -8,33 +8,36 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
-import mcc.client.agent.AndroidMobileAgent;
 import jade.android.AgentContainerHandler;
 import jade.android.AgentHandler;
-import jade.android.AndroidHelper;
 import jade.android.RuntimeCallback;
 import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
+import mcc.client.agent.AndroidMobileAgent;
 
 
-public class AndroidMobilityActivity extends Activity {
+public class HostActivity extends Activity {
 
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
 
-    private TextView connectionStatus;
-
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.host_create_task);
 
-        connectionStatus = (TextView) this.findViewById(R.id.connection_status);
+        Button createTaskButton = findViewById(R.id.createTaskButton);
+        createTaskButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startContainer();
+                setContentView(R.layout.host_start_task);
+            }
+        });
 
         Log.i("T", "AndroidMobilityActivity - onCreate()");
 
@@ -44,16 +47,7 @@ public class AndroidMobilityActivity extends Activity {
                 public void onServiceConnected(ComponentName className, IBinder service) {
                     jadeBinder = (RuntimeServiceBinder) service;
                     Log.i("T", "AndroidMobilityActivity - JADE binder initialized");
-                    if (jadeBinder.getContainerHandler() == null) {
-                        // Container is not yet there --> Start it
-                        startContainer();
-                    }
-//                    else {
-//                        // Container is already running
-//                        updateConnectionStatus("Connected");
-//                    }
-                };
-
+                }
                 public void onServiceDisconnected(ComponentName className) {
                     jadeBinder = null;
                     Log.i("T", "AndroidMobilityActivity - JADE binder cleared");
@@ -66,31 +60,17 @@ public class AndroidMobilityActivity extends Activity {
     private void startContainer() {
         Log.i("T", "AndroidMobilityActivity - Starting container ...");
 
-        Profile p = new ProfileImpl("192.168.8.109", 1099, null, false);
-
-        if (AndroidHelper.isEmulator()) {
-            // Emulator: this is needed to work with emulated devices
-            p.setParameter(Profile.LOCAL_HOST, AndroidHelper.LOOPBACK);
-        } else {
-            p.setParameter(Profile.LOCAL_HOST,
-                    AndroidHelper.getLocalIPAddress());
-        }
-        // Emulator: this is not really needed on a real device
-//        p.setParameter(Profile.LOCAL_PORT, "1099");
-
-
+        Profile p = new ProfileImpl("192.168.8.109", 1099, null, true);
         jadeBinder.createAgentContainer(p, new RuntimeCallback<AgentContainerHandler>   () {
             @Override
             public void onSuccess(AgentContainerHandler handler) {
                 Log.i("T", "AndroidMobilityActivity - Container successfully created");
-//                updateConnectionStatus("Connected !!!");
                 startMobileAgent(handler);
             }
 
             @Override
             public void onFailure(Throwable th) {
                 Log.w("T", "AndroidMobilityActivity - Error creating container", th);
-//                updateConnectionStatus("Connection error");
             }
         });
     }
@@ -116,16 +96,6 @@ public class AndroidMobilityActivity extends Activity {
             @Override
             public void onFailure(Throwable th) {
                 Log.w("T", "AndroidMobilityActivity - Error creating mobile agent", th);
-            }
-        });
-    }
-
-
-    private void updateConnectionStatus(final String status) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                connectionStatus.setText(status);
             }
         });
     }
