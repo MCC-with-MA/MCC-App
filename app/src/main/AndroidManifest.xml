@@ -30,13 +30,13 @@
         </activity>
 
         <activity
-            android:name=".HostActivity"
+            android:name=".HostCreateTaskActivity"
             android:exported="true"
             android:theme="@style/Theme.MCCApp">
         </activity>
 
         <activity
-            android:name=".ComputingDeviceActivity"
+            android:name=".ComputingDeviceRegisterActivity"
             android:exported="true"
             android:theme="@style/Theme.MCCApp">
         </activity>

@@ -10,26 +10,23 @@ import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
 
-public class ComputingDeviceTerminateActivity extends Activity {
+public class ComputingDeviceExecutingTaskActivity extends Activity {
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.computing_device_terminate);
+        setContentView(R.layout.computing_device_executing_task);
 
-
-        Button startButton = findViewById(R.id.startButton);
-        startButton.setOnClickListener(new View.OnClickListener() {
+        Button terminateButton = findViewById(R.id.terminateButton);
+        terminateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(ComputingDeviceStartTaskActivity.this, ComputingDeviceTerminateActivity.class));
-                // setContentView(R.layout.computing_device_start_task);
+                // pop up window
             }
         });
 

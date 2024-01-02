@@ -21,7 +21,7 @@ import jade.core.ProfileImpl;
 import mcc.client.agent.AndroidMobileAgent;
 
 
-public class HostActivity extends Activity {
+public class HostCreateTaskActivity extends Activity {
 
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
@@ -35,7 +35,7 @@ public class HostActivity extends Activity {
         createTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startContainer();
-                startActivity(new Intent(HostActivity.this, HostStartTaskActivity.class));
+                startActivity(new Intent(HostCreateTaskActivity.this, HostStartTaskActivity.class));
                 //setContentView(R.layout.host_start_task);
             }
         });

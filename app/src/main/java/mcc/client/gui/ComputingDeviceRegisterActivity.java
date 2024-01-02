@@ -19,7 +19,7 @@ import jade.core.Profile;
 import jade.core.ProfileImpl;
 
 
-public class ComputingDeviceActivity extends Activity {
+public class ComputingDeviceRegisterActivity extends Activity {
 
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
@@ -33,7 +33,8 @@ public class ComputingDeviceActivity extends Activity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startContainer();
-                setContentView(R.layout.computing_device_start_task);
+                startActivity(new Intent(ComputingDeviceRegisterActivity.this, ComputingDeviceStartTaskActivity.class));
+                // setContentView(R.layout.computing_device_start_task);
             }
         });
 

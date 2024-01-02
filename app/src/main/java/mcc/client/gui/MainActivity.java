@@ -16,14 +16,14 @@ public class MainActivity extends Activity {
         Button hostButton = findViewById(R.id.hostButton);
         hostButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, HostActivity.class));
+                startActivity(new Intent(MainActivity.this, HostCreateTaskActivity.class));
             }
         });
 
         Button computingDeviceButton = findViewById(R.id.computingDeviceButton);
         computingDeviceButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ComputingDeviceActivity.class));
+                startActivity(new Intent(MainActivity.this, ComputingDeviceRegisterActivity.class));
             }
         });
     }

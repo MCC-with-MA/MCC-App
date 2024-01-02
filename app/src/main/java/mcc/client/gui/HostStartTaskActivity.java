@@ -15,7 +15,7 @@ import android.widget.TextView;
 import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
 
-public class HostStartActivity extends Activity {
+public class HostStartTaskActivity extends Activity {
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
 
@@ -33,7 +33,8 @@ public class HostStartActivity extends Activity {
         Button createTaskButton = findViewById(R.id.startTaskButton);
         createTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setContentView(R.layout.host_executing_task);
+                startActivity(new Intent(HostStartTaskActivity.this, HostExecutingTaskActivity.class));
+                //setContentView(R.layout.host_executing_task);
             }
         });
 
