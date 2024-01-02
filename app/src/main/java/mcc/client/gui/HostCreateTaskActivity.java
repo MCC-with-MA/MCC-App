@@ -35,7 +35,8 @@ public class HostActivity extends Activity {
         createTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startContainer();
-                setContentView(R.layout.host_start_task);
+                startActivity(new Intent(HostActivity.this, HostStartTaskActivity.class));
+                //setContentView(R.layout.host_start_task);
             }
         });
 
