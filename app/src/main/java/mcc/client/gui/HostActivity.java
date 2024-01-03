@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import jade.android.AgentContainerHandler;
 import jade.android.AgentHandler;
@@ -37,6 +38,15 @@ public class HostActivity extends Activity {
                 startContainer();
                 startActivity(new Intent(HostActivity.this, HostStartActivity.class));
 
+            }
+        });
+
+        ImageButton backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
