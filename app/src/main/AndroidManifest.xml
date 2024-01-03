@@ -30,16 +30,41 @@
         </activity>
 
         <activity
-            android:name=".HostCreateTaskActivity"
+            android:name=".HostActivity"
             android:exported="true"
             android:theme="@style/Theme.MCCApp">
         </activity>
 
         <activity
-            android:name=".ComputingDeviceRegisterActivity"
+            android:name=".HostStartActivity"
             android:exported="true"
             android:theme="@style/Theme.MCCApp">
         </activity>
+
+        <activity
+            android:name=".HostRunActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MCCApp">
+        </activity>
+
+        <activity
+            android:name=".ComputingDeviceActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MCCApp">
+        </activity>
+
+        <activity
+            android:name=".ComputingDeviceStartActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MCCApp">
+        </activity>
+
+        <activity
+            android:name=".ComputingDeviceRunActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MCCApp">
+        </activity>
+
 
     </application>
 

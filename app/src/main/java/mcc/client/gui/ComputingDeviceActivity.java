@@ -10,12 +10,16 @@ import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
+import jade.android.AgentContainerHandler;
+import jade.android.RuntimeCallback;
 import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
+import jade.core.Profile;
+import jade.core.ProfileImpl;
 
-public class ComputingDeviceStartTaskActivity extends Activity {
+
+public class ComputingDeviceActivity extends Activity {
 
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
@@ -23,19 +27,15 @@ public class ComputingDeviceStartTaskActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.computing_device_start_task);
+        setContentView(R.layout.computing_device_register);
 
-        String host = "192.168.1.1";
-        String port = "99";
 
-        TextView textView = findViewById(R.id.TextView01);
-        textView.setText("Connected to $host:$port");
 
-        Button startButton = findViewById(R.id.startButton);
-        startButton.setOnClickListener(new View.OnClickListener() {
+        Button registerButton = findViewById(R.id.registerButton);
+        registerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(ComputingDeviceStartTaskActivity.this, ComputingDeviceExecutingTaskActivity.class));
-                // setContentView(R.layout.computing_device_start_task);
+                startContainer();
+                startActivity(new Intent(ComputingDeviceActivity.this, ComputingDeviceStartActivity.class));
             }
         });
 
@@ -55,5 +55,23 @@ public class ComputingDeviceStartTaskActivity extends Activity {
             };
             bindService(new Intent(this, RuntimeService.class), serviceConnection, Context.BIND_AUTO_CREATE);
         }
+    }
+
+    private void startContainer() {
+        Log.i("T", "AndroidMobilityActivity - Starting container ...");
+
+        Profile p = new ProfileImpl("192.168.8.109", 1099, null, false);
+
+        jadeBinder.createAgentContainer(p, new RuntimeCallback<AgentContainerHandler>   () {
+            @Override
+            public void onSuccess(AgentContainerHandler handler) {
+                Log.i("T", "AndroidMobilityActivity - Container successfully created");
+            }
+
+            @Override
+            public void onFailure(Throwable th) {
+                Log.w("T", "AndroidMobilityActivity - Error creating container", th);
+            }
+        });
     }
 }

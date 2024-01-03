@@ -12,14 +12,16 @@ import android.view.View;
 import android.widget.Button;
 
 import jade.android.AgentContainerHandler;
+import jade.android.AgentHandler;
 import jade.android.RuntimeCallback;
 import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
+import mcc.client.agent.AndroidMobileAgent;
 
 
-public class ComputingDeviceRegisterActivity extends Activity {
+public class HostActivity extends Activity {
 
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
@@ -27,14 +29,14 @@ public class ComputingDeviceRegisterActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.computing_device_register);
+        setContentView(R.layout.host_create_task);
 
-        Button registerButton = findViewById(R.id.registerButton);
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        Button createTaskButton = findViewById(R.id.createTaskButton);
+        createTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startContainer();
-                startActivity(new Intent(ComputingDeviceRegisterActivity.this, ComputingDeviceStartTaskActivity.class));
-                // setContentView(R.layout.computing_device_start_task);
+                startActivity(new Intent(HostActivity.this, HostStartActivity.class));
+
             }
         });
 
@@ -46,7 +48,7 @@ public class ComputingDeviceRegisterActivity extends Activity {
                 public void onServiceConnected(ComponentName className, IBinder service) {
                     jadeBinder = (RuntimeServiceBinder) service;
                     Log.i("T", "AndroidMobilityActivity - JADE binder initialized");
-                };
+                }
                 public void onServiceDisconnected(ComponentName className) {
                     jadeBinder = null;
                     Log.i("T", "AndroidMobilityActivity - JADE binder cleared");
@@ -59,17 +61,42 @@ public class ComputingDeviceRegisterActivity extends Activity {
     private void startContainer() {
         Log.i("T", "AndroidMobilityActivity - Starting container ...");
 
-        Profile p = new ProfileImpl("192.168.8.109", 1099, null, false);
-
+        Profile p = new ProfileImpl("192.168.8.109", 1099, null, true);
         jadeBinder.createAgentContainer(p, new RuntimeCallback<AgentContainerHandler>   () {
             @Override
             public void onSuccess(AgentContainerHandler handler) {
                 Log.i("T", "AndroidMobilityActivity - Container successfully created");
+                startMobileAgent(handler);
             }
 
             @Override
             public void onFailure(Throwable th) {
                 Log.w("T", "AndroidMobilityActivity - Error creating container", th);
+            }
+        });
+    }
+
+    private void startMobileAgent(AgentContainerHandler handler) {
+        handler.createNewAgent("m", AndroidMobileAgent.class.getName(), null, new RuntimeCallback<AgentHandler>() {
+            @Override
+            public void onSuccess(AgentHandler agent) {
+                Log.i("T", "AndroidMobilityActivity - Mobile agent successfully created");
+                agent.start(new RuntimeCallback<Void>(){
+                    @Override
+                    public void onSuccess(Void arg0) {
+                        Log.i("T", "AndroidMobilityActivity - Mobile agent successfully started");
+                    }
+
+                    @Override
+                    public void onFailure(Throwable th) {
+                        Log.w("T", "AndroidMobilityActivity - Error starting mobile agent", th);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Throwable th) {
+                Log.w("T", "AndroidMobilityActivity - Error creating mobile agent", th);
             }
         });
     }
