@@ -20,12 +20,15 @@ import jade.android.RuntimeServiceBinder;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
 import mcc.client.agent.AndroidMobileAgent;
+//import mcc.client.agent.AndroidMobileInterface;
 
 
 public class HostStartActivity extends Activity {
 
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
+//    private AndroidMobileInterface androidMobileInterface;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,50 @@ public class HostStartActivity extends Activity {
         Button startTaskButton = findViewById(R.id.startTaskButton);
         startTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                startMobileAgent();
                 startActivity(new Intent(HostStartActivity.this, HostRunActivity.class));
+            }
+        });
+
+        Log.i("T", "AndroidMobilityActivity - onCreate()");
+
+        if (jadeBinder == null) {
+            Log.i("T", "AndroidMobilityActivity - JADE binder null. Initialize it");
+            serviceConnection = new ServiceConnection() {
+                public void onServiceConnected(ComponentName className, IBinder service) {
+                    jadeBinder = (RuntimeServiceBinder) service;
+                    Log.i("T", "AndroidMobilityActivity - JADE binder initialized");
+                }
+                public void onServiceDisconnected(ComponentName className) {
+                    jadeBinder = null;
+                    Log.i("T", "AndroidMobilityActivity - JADE binder cleared");
+                }
+            };
+            bindService(new Intent(this, RuntimeService.class), serviceConnection, Context.BIND_AUTO_CREATE);
+        }
+    }
+
+    private void startMobileAgent() {
+        jadeBinder.getContainerHandler().createNewAgent("m", AndroidMobileAgent.class.getName(), null, new RuntimeCallback<AgentHandler>() {
+            @Override
+            public void onSuccess(AgentHandler agent) {
+                Log.i("T", "AndroidMobilityActivity - Mobile agent successfully created");
+                agent.start(new RuntimeCallback<Void>(){
+                    @Override
+                    public void onSuccess(Void arg0) {
+                        Log.i("T", "AndroidMobilityActivity - Mobile agent successfully started");
+                    }
+
+                    @Override
+                    public void onFailure(Throwable th) {
+                        Log.w("T", "AndroidMobilityActivity - Error starting mobile agent", th);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Throwable th) {
+                Log.w("T", "AndroidMobilityActivity - Error creating mobile agent", th);
             }
         });
     }

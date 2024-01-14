@@ -76,37 +76,11 @@ public class HostActivity extends Activity {
             @Override
             public void onSuccess(AgentContainerHandler handler) {
                 Log.i("T", "AndroidMobilityActivity - Container successfully created");
-                startMobileAgent(handler);
             }
 
             @Override
             public void onFailure(Throwable th) {
                 Log.w("T", "AndroidMobilityActivity - Error creating container", th);
-            }
-        });
-    }
-
-    private void startMobileAgent(AgentContainerHandler handler) {
-        handler.createNewAgent("m", AndroidMobileAgent.class.getName(), null, new RuntimeCallback<AgentHandler>() {
-            @Override
-            public void onSuccess(AgentHandler agent) {
-                Log.i("T", "AndroidMobilityActivity - Mobile agent successfully created");
-                agent.start(new RuntimeCallback<Void>(){
-                    @Override
-                    public void onSuccess(Void arg0) {
-                        Log.i("T", "AndroidMobilityActivity - Mobile agent successfully started");
-                    }
-
-                    @Override
-                    public void onFailure(Throwable th) {
-                        Log.w("T", "AndroidMobilityActivity - Error starting mobile agent", th);
-                    }
-                });
-            }
-
-            @Override
-            public void onFailure(Throwable th) {
-                Log.w("T", "AndroidMobilityActivity - Error creating mobile agent", th);
             }
         });
     }
