@@ -1,26 +1,17 @@
 package mcc.client.gui;
 
 import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import jade.android.AgentContainerHandler;
-import jade.android.RuntimeCallback;
-import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
-import jade.core.Profile;
-import jade.core.ProfileImpl;
 
 
-public class ComputingDeviceStartActivity extends Activity {
+public class WorkerStartActivity extends Activity {
 
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
@@ -39,7 +30,7 @@ public class ComputingDeviceStartActivity extends Activity {
         Button startButton = findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(ComputingDeviceStartActivity.this, ComputingDeviceRunActivity.class));
+                startActivity(new Intent(WorkerStartActivity.this, WorkerRunActivity.class));
             }
         });
     }

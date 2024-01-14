@@ -48,19 +48,19 @@
         </activity>
 
         <activity
-            android:name=".ComputingDeviceActivity"
+            android:name=".WorkerActivity"
             android:exported="true"
             android:theme="@style/Theme.MCCApp">
         </activity>
 
         <activity
-            android:name=".ComputingDeviceStartActivity"
+            android:name=".WorkerStartActivity"
             android:exported="true"
             android:theme="@style/Theme.MCCApp">
         </activity>
 
         <activity
-            android:name=".ComputingDeviceRunActivity"
+            android:name=".WorkerRunActivity"
             android:exported="true"
             android:theme="@style/Theme.MCCApp">
         </activity>

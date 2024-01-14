@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
         Button computingDeviceButton = findViewById(R.id.computingDeviceButton);
         computingDeviceButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ComputingDeviceActivity.class));
+                startActivity(new Intent(MainActivity.this, WorkerActivity.class));
             }
         });
     }
