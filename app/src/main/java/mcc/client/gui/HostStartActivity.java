@@ -12,11 +12,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import jade.android.AgentHandler;
 import jade.android.RuntimeCallback;
 import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
+import jade.core.ContainerID;
+import jade.wrapper.AgentController;
+import jade.wrapper.ControllerException;
 import mcc.client.agent.AndroidMobileAgent;
+import mcc.client.agent.MainAgent;
+import mcc.client.agent.MainAgentInterface;
 //import mcc.client.agent.AndroidMobileInterface;
 
 
@@ -24,7 +31,7 @@ public class HostStartActivity extends Activity {
 
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
-//    private AndroidMobileInterface androidMobileInterface;
+    static MainAgentInterface mainAgentInterface;
 
 
     @Override
@@ -41,7 +48,17 @@ public class HostStartActivity extends Activity {
         Button startTaskButton = findViewById(R.id.startTaskButton);
         startTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startMobileAgent();
+                startMobileAgent("m1", AndroidMobileAgent.class.getName());
+                startMobileAgent("m2", MainAgent.class.getName());
+//                try {
+//                    mainAgentInterface = getAgent("m2")
+//                            .getO2AInterface(MainAgentInterface.class);
+//                } catch (ControllerException e) {
+//                    Log.i("T", "AndroidMobilityActivity - Error connecting to MainAgentInterface");
+//                    throw new RuntimeException(e);
+//                }
+//                ArrayList<ContainerID> availableContainers = mainAgentInterface.getAvailableContainers();
+//                Log.i("T", "Available containers: "+availableContainers);
                 startActivity(new Intent(HostStartActivity.this, HostRunActivity.class));
             }
         });
@@ -64,28 +81,32 @@ public class HostStartActivity extends Activity {
         }
     }
 
-    private void startMobileAgent() {
-        jadeBinder.getContainerHandler().createNewAgent("m", AndroidMobileAgent.class.getName(), null, new RuntimeCallback<AgentHandler>() {
+    private void startMobileAgent(String name, String agentClass) {
+        jadeBinder.getContainerHandler().createNewAgent(name, agentClass, null, new RuntimeCallback<AgentHandler>() {
             @Override
             public void onSuccess(AgentHandler agent) {
-                Log.i("T", "AndroidMobilityActivity - Mobile agent successfully created");
+                Log.i("T", "AndroidMobilityActivity - Mobile agent ("+name+"/"+agentClass+") successfully created");
                 agent.start(new RuntimeCallback<Void>(){
                     @Override
                     public void onSuccess(Void arg0) {
-                        Log.i("T", "AndroidMobilityActivity - Mobile agent successfully started");
+                        Log.i("T", "AndroidMobilityActivity - Mobile agent ("+name+"/"+agentClass+") successfully started");
                     }
 
                     @Override
                     public void onFailure(Throwable th) {
-                        Log.w("T", "AndroidMobilityActivity - Error starting mobile agent", th);
+                        Log.w("T", "AndroidMobilityActivity - Error starting mobile agent ("+name+"/"+agentClass+")", th);
                     }
                 });
             }
 
             @Override
             public void onFailure(Throwable th) {
-                Log.w("T", "AndroidMobilityActivity - Error creating mobile agent", th);
+                Log.w("T", "AndroidMobilityActivity - Error creating mobile agent ("+name+"/"+agentClass+")", th);
             }
         });
+    }
+
+    public AgentController getAgent(String agentName) throws ControllerException {
+        return jadeBinder.getContainerHandler().getAgentContainer().getAgent(agentName);
     }
 }
