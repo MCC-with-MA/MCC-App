@@ -12,13 +12,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import jade.android.AgentContainerHandler;
 import jade.android.AgentHandler;
 import jade.android.RuntimeCallback;
 import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
-import jade.core.Profile;
-import jade.core.ProfileImpl;
 import mcc.client.agent.AndroidMobileAgent;
 //import mcc.client.agent.AndroidMobileInterface;
 
@@ -33,7 +30,7 @@ public class HostStartActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.host_start_task);
+        setContentView(R.layout.host_start);
 
         String host = "192.168.1.1";
         String port = "99";

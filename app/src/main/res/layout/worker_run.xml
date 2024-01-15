@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:textSize="20dp"
-        android:text="Host Created..."
+        android:textSize="25sp"
+        android:text="Task executing..."
         />
 
     <TextView
@@ -20,8 +20,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
-        android:textSize="20dp"
+        android:layout_marginTop="175dp"
+        android:textSize="25sp"
+        android:text="Status: "
         />
 
     <TextView
@@ -29,19 +30,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
-        android:textSize="20dp"
-        android:text="# agents"
+        android:layout_marginTop="250dp"
+        android:textSize="25sp"
+        android:text="Progress: "
         />
 
     <Button
-        android:id="@+id/startTaskButton"
-        android:layout_width="200dp"
-        android:layout_height="75dp"
-        android:text="Start"
+        android:id="@+id/terminateButton"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:text="Terminate"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
-        android:textSize="20dp"
+        android:textSize="25dp"
+        android:layout_marginTop="350dp"
         />
 
 </RelativeLayout>

@@ -19,7 +19,7 @@ public class WorkerStartActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.computing_device_start_task);
+        setContentView(R.layout.worker_start);
 
         String host = "192.168.1.1";
         String port = "99";

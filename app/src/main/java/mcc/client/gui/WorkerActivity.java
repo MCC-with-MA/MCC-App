@@ -27,7 +27,7 @@ public class WorkerActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.computing_device_register);
+        setContentView(R.layout.worker);
 
 
 

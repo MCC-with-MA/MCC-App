@@ -13,13 +13,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import jade.android.AgentContainerHandler;
-import jade.android.AgentHandler;
 import jade.android.RuntimeCallback;
 import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
-import mcc.client.agent.AndroidMobileAgent;
 
 
 public class HostActivity extends Activity {
@@ -30,7 +28,7 @@ public class HostActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.host_create_task);
+        setContentView(R.layout.host);
 
         Button createTaskButton = findViewById(R.id.createTaskButton);
         createTaskButton.setOnClickListener(new View.OnClickListener() {
