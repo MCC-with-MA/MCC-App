@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 
 import jade.android.AgentContainerHandler;
 import jade.android.AgentHandler;
+import jade.android.AndroidHelper;
 import jade.android.RuntimeCallback;
 import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
@@ -72,6 +73,17 @@ public class HostActivity extends Activity {
         Log.i("T", "AndroidMobilityActivity - Starting container ...");
 
         Profile p = new ProfileImpl("192.168.8.109", 1099, null, true);
+
+//        if (AndroidHelper.isEmulator()) {
+//            // Emulator: this is needed to work with emulated devices
+//            p.setParameter(Profile.LOCAL_HOST, AndroidHelper.LOOPBACK);
+//        } else {
+//            p.setParameter(Profile.LOCAL_HOST,
+//                    AndroidHelper.getLocalIPAddress());
+//        }
+//        // Emulator: this is not really needed on a real device
+//        p.setParameter(Profile.LOCAL_PORT, "2000");
+
         jadeBinder.createAgentContainer(p, new RuntimeCallback<AgentContainerHandler>   () {
             @Override
             public void onSuccess(AgentContainerHandler handler) {
