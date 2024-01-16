@@ -19,11 +19,14 @@ import jade.android.RuntimeCallback;
 import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
 import jade.core.ContainerID;
+import jade.core.MicroRuntime;
 import jade.wrapper.AgentController;
 import jade.wrapper.ControllerException;
+import jade.wrapper.StaleProxyException;
 import mcc.client.agent.AndroidMobileAgent;
+import mcc.client.agent.AndroidMobileInterface;
 import mcc.client.agent.MainAgent;
-import mcc.client.agent.MainAgentInterface;
+import mcc.client.agent.MainInterface;
 //import mcc.client.agent.AndroidMobileInterface;
 
 
@@ -31,7 +34,8 @@ public class HostStartActivity extends Activity {
 
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
-    static MainAgentInterface mainAgentInterface;
+    private MainInterface mainInterface;
+    private AndroidMobileInterface androidMobileInterface;
 
 
     @Override
@@ -48,17 +52,26 @@ public class HostStartActivity extends Activity {
         Button startTaskButton = findViewById(R.id.startTaskButton);
         startTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                try {
+                    mainInterface = getAgent("m")
+                            .getO2AInterface(MainInterface.class);
+                } catch (ControllerException e) {
+                    Log.i("T", "AndroidMobilityActivity - Error connecting to MainInterface");
+                    throw new RuntimeException(e);
+                }
+                ArrayList<ContainerID> availableContainers = mainInterface.getAvailableContainers();
+                Log.i("T", "Available containers: "+availableContainers);
+
                 startMobileAgent("m1", AndroidMobileAgent.class.getName());
-                startMobileAgent("m2", MainAgent.class.getName());
 //                try {
-//                    mainAgentInterface = getAgent("m2")
-//                            .getO2AInterface(MainAgentInterface.class);
+//                    androidMobileInterface = getAgent("m1")
+//                            .getO2AInterface(AndroidMobileInterface.class);
 //                } catch (ControllerException e) {
-//                    Log.i("T", "AndroidMobilityActivity - Error connecting to MainAgentInterface");
+//                    Log.i("T", "AndroidMobilityActivity - Error connecting to AndroidMobileInterface");
 //                    throw new RuntimeException(e);
 //                }
-//                ArrayList<ContainerID> availableContainers = mainAgentInterface.getAvailableContainers();
-//                Log.i("T", "Available containers: "+availableContainers);
+//                androidMobileInterface.migrate();
+
                 startActivity(new Intent(HostStartActivity.this, HostRunActivity.class));
             }
         });
@@ -86,17 +99,22 @@ public class HostStartActivity extends Activity {
             @Override
             public void onSuccess(AgentHandler agent) {
                 Log.i("T", "AndroidMobilityActivity - Mobile agent ("+name+"/"+agentClass+") successfully created");
-                agent.start(new RuntimeCallback<Void>(){
-                    @Override
-                    public void onSuccess(Void arg0) {
-                        Log.i("T", "AndroidMobilityActivity - Mobile agent ("+name+"/"+agentClass+") successfully started");
-                    }
-
-                    @Override
-                    public void onFailure(Throwable th) {
-                        Log.w("T", "AndroidMobilityActivity - Error starting mobile agent ("+name+"/"+agentClass+")", th);
-                    }
-                });
+//                try {
+//                    Log.i("T", "AndroidMobilityActivity - Mobile agent "+agent.getAgentController().getName());
+//                } catch (StaleProxyException e) {
+//                    throw new RuntimeException(e);
+//                }
+//                agent.start(new RuntimeCallback<Void>(){
+//                    @Override
+//                    public void onSuccess(Void arg0) {
+//                        Log.i("T", "AndroidMobilityActivity - Mobile agent ("+name+"/"+agentClass+") successfully started");
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Throwable th) {
+//                        Log.w("T", "AndroidMobilityActivity - Error starting mobile agent ("+name+"/"+agentClass+")", th);
+//                    }
+//                });
             }
 
             @Override

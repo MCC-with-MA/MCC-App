@@ -13,12 +13,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import jade.android.AgentContainerHandler;
+import jade.android.AgentHandler;
 import jade.android.AndroidHelper;
 import jade.android.RuntimeCallback;
 import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
+import mcc.client.agent.AndroidMobileAgent;
+import mcc.client.agent.MainAgent;
 
 
 public class HostActivity extends Activity {
@@ -86,11 +89,37 @@ public class HostActivity extends Activity {
             @Override
             public void onSuccess(AgentContainerHandler handler) {
                 Log.i("T", "AndroidMobilityActivity - Container successfully created");
+                startMainAgent(handler);
             }
 
             @Override
             public void onFailure(Throwable th) {
                 Log.w("T", "AndroidMobilityActivity - Error creating container", th);
+            }
+        });
+    }
+
+    private void startMainAgent(AgentContainerHandler handler) {
+        handler.createNewAgent("m", MainAgent.class.getName(), null, new RuntimeCallback<AgentHandler>() {
+            @Override
+            public void onSuccess(AgentHandler agent) {
+                Log.i("T", "AndroidMobilityActivity - Mobile agent (m/mcc.client.agent.MainAgent) successfully created");
+                agent.start(new RuntimeCallback<Void>(){
+                    @Override
+                    public void onSuccess(Void arg0) {
+                        Log.i("T", "AndroidMobilityActivity - Mobile agent (m/mcc.client.agent.MainAgent) successfully started");
+                    }
+
+                    @Override
+                    public void onFailure(Throwable th) {
+                        Log.w("T", "AndroidMobilityActivity - Error starting mobile agent (m/mcc.client.agent.MainAgent)", th);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Throwable th) {
+                Log.w("T", "AndroidMobilityActivity - Error creating mobile agent (m/mcc.client.agent.MainAgent)", th);
             }
         });
     }

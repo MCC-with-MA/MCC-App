@@ -12,7 +12,7 @@ import jade.domain.introspection.RemovedContainer;
 import jade.util.Logger;
 import jade.util.leap.Map;
 
-public class MainAgent extends Agent implements MainAgentInterface {
+public class MainAgent extends Agent implements MainInterface {
 
     private transient Logger myLogger = Logger.getJADELogger(getClass().getName());
     private ArrayList<ContainerID> availableContainers = new ArrayList<ContainerID>();
@@ -21,7 +21,7 @@ public class MainAgent extends Agent implements MainAgentInterface {
      * Agent initializations
      **/
     protected void setup() {
-        registerO2AInterface(MainAgentInterface.class, this);
+        registerO2AInterface(MainInterface.class, this);
 
         AMSSubscriber subscriber = new AMSSubscriber(){
             @Override

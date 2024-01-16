@@ -13,8 +13,8 @@ public class AndroidMobileAgent extends Agent implements AndroidMobileInterface 
 
     @Override
     public void setup() {
-//        registerO2AInterface(AndroidMobileInterface.class, this);
-        migrate();
+        registerO2AInterface(AndroidMobileInterface.class, this);
+//        migrate();
         myLogger.log(Logger.INFO, "Agent "+getLocalName()+" - Running at "+here().getName()+" ...");
     }
 

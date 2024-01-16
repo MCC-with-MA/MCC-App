@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 import jade.core.ContainerID;
 
-public interface MainAgentInterface {
+public interface MainInterface {
     ArrayList<ContainerID> getAvailableContainers();
 }
