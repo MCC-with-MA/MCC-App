@@ -63,16 +63,18 @@ public class HostStartActivity extends Activity {
                 Log.i("T", "Available containers: "+availableContainers);
 
                 startMobileAgent("m1", AndroidMobileAgent.class.getName());
-//                try {
-//                    androidMobileInterface = getAgent("m1")
-//                            .getO2AInterface(AndroidMobileInterface.class);
-//                } catch (ControllerException e) {
-//                    Log.i("T", "AndroidMobilityActivity - Error connecting to AndroidMobileInterface");
-//                    throw new RuntimeException(e);
-//                }
-//                androidMobileInterface.migrate();
-
-                startActivity(new Intent(HostStartActivity.this, HostRunActivity.class));
+                startTaskButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        try {
+                            getAgent("m1").getO2AInterface(AndroidMobileInterface.class).migrate();
+                        } catch (ControllerException e) {
+                            Log.i("T", "AndroidMobilityActivity - Error connecting to AndroidMobileInterface");
+                            throw new RuntimeException(e);
+                        }
+                        startActivity(new Intent(HostStartActivity.this, HostRunActivity.class));
+                    }
+                });
             }
         });
 
@@ -99,22 +101,22 @@ public class HostStartActivity extends Activity {
             @Override
             public void onSuccess(AgentHandler agent) {
                 Log.i("T", "AndroidMobilityActivity - Mobile agent ("+name+"/"+agentClass+") successfully created");
-//                try {
-//                    Log.i("T", "AndroidMobilityActivity - Mobile agent "+agent.getAgentController().getName());
-//                } catch (StaleProxyException e) {
-//                    throw new RuntimeException(e);
-//                }
-//                agent.start(new RuntimeCallback<Void>(){
-//                    @Override
-//                    public void onSuccess(Void arg0) {
-//                        Log.i("T", "AndroidMobilityActivity - Mobile agent ("+name+"/"+agentClass+") successfully started");
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Throwable th) {
-//                        Log.w("T", "AndroidMobilityActivity - Error starting mobile agent ("+name+"/"+agentClass+")", th);
-//                    }
-//                });
+                try {
+                    Log.i("T", "AndroidMobilityActivity - Mobile agent "+agent.getAgentController().getName());
+                } catch (StaleProxyException e) {
+                    throw new RuntimeException(e);
+                }
+                agent.start(new RuntimeCallback<Void>(){
+                    @Override
+                    public void onSuccess(Void arg0) {
+                        Log.i("T", "AndroidMobilityActivity - Mobile agent ("+name+"/"+agentClass+") successfully started");
+                    }
+
+                    @Override
+                    public void onFailure(Throwable th) {
+                        Log.w("T", "AndroidMobilityActivity - Error starting mobile agent ("+name+"/"+agentClass+")", th);
+                    }
+                });
             }
 
             @Override
