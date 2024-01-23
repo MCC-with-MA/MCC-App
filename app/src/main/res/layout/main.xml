@@ -5,26 +5,29 @@
 	android:orientation="vertical"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:weightSum="1">
+	android:weightSum="1"
+	android:background="#00004F"
+	>
 
-	<Button
-		android:id="@+id/hostButton"
-		android:layout_width="250dp"
-		android:layout_height="100dp"
-		android:text="Host"
+	<ImageView
+		android:id="@+id/robot"
+		android:layout_width="300dp"
+		android:layout_height="300dp"
+		android:src="@drawable/robot_splash_screen"
 		android:layout_centerHorizontal="true"
-		android:layout_marginTop="200dp"
-		android:textSize="25dp"
+		android:layout_marginTop="100dp"
 		/>
 
-	<Button
-		android:id="@+id/computingDeviceButton"
-		android:layout_width="250dp"
-		android:layout_height="100dp"
-		android:text="Worker"
+	<TextView
+		android:id="@+id/appName"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
 		android:layout_centerHorizontal="true"
-		android:layout_marginTop="400dp"
-		android:textSize="25dp"
+		android:layout_marginTop="500dp"
+		android:text="Mobi Agents"
+		android:textColor="@color/white"
+		android:textSize="55dp"
+		android:fontFamily="@font/cornerita"
 		/>
 
 </RelativeLayout>
