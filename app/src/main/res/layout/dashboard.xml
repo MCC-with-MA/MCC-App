@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerHorizontal="true"
+    android:background="#00004F"
     >
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_gravity="center"
             >
 
             <Button
@@ -26,7 +26,7 @@
                 android:text="Host"
                 android:layout_centerHorizontal="true"
                 android:textSize="25dp"
-                android:backgroundTint="#00004F"
+                android:backgroundTint="#000080"
                 />
 
             <Button
@@ -37,8 +37,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="200dp"
                 android:textSize="25dp"
-                android:backgroundTint="#00004F"
+                android:backgroundTint="#000080"
                 />
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

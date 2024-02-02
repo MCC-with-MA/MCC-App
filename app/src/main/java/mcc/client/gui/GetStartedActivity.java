@@ -14,7 +14,7 @@ public class GetStartedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.get_started);
+        setContentView(R.layout.get_started_2);
 
         Button getStartedButton = findViewById(R.id.getStartedButton);
 
