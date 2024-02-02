@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/webview"
 	android:orientation="vertical"
@@ -9,27 +9,40 @@
 	android:background="#00004F"
 	>
 
-	<ImageView
-		android:id="@+id/robot"
-		android:layout_width="300dp"
-		android:layout_height="300dp"
-		android:src="@drawable/robot_splash_screen"
-		android:layout_centerHorizontal="true"
-		android:layout_marginTop="100dp"
-		/>
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
 
-	<TextView
-		android:id="@+id/appName"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_marginTop="500dp"
-		android:text="Mobi Agents"
-		android:textColor="@color/white"
-		android:textSize="55dp"
-		android:fontFamily="@font/cornerita"
-		/>
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_gravity="center"
+			>
 
-</RelativeLayout>
+			<ImageView
+				android:id="@+id/robot"
+				android:layout_width="250dp"
+				android:layout_height="250dp"
+				android:src="@drawable/robot_splash_screen"
+				android:layout_centerHorizontal="true"
+				/>
+
+			<TextView
+				android:id="@+id/appName"
+				android:layout_below="@+id/robot"
+				android:layout_marginTop="50dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:text="SwiftX"
+				android:textColor="@color/white"
+				android:textSize="55dp"
+				android:fontFamily="@font/cornerita"
+				/>
+
+		</RelativeLayout>
+	</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 

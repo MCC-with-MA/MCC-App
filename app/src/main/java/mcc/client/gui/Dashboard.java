@@ -1,6 +1,7 @@
 package mcc.client.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,15 +17,15 @@ public class Dashboard extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.dashboard);
 
-        Button hostButton = findViewById(R.id.hostButton);
-        hostButton.setOnClickListener(new View.OnClickListener() {
+        CardView hostCard = findViewById(R.id.host_card);
+        hostCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(Dashboard.this, HostActivity.class));
             }
         });
 
-        Button computingDeviceButton = findViewById(R.id.computingDeviceButton);
-        computingDeviceButton.setOnClickListener(new View.OnClickListener() {
+        CardView workerCard = findViewById(R.id.worker_card);
+        workerCard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(Dashboard.this, WorkerActivity.class));
             }

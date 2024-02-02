@@ -11,34 +11,140 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
             >
 
-            <Button
-                android:id="@+id/hostButton"
-                android:layout_width="250dp"
-                android:layout_height="100dp"
-                android:text="Host"
-                android:layout_centerHorizontal="true"
-                android:textSize="25dp"
-                android:backgroundTint="#000080"
-                />
+            <RelativeLayout
+                android:id="@+id/rellay_1_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                >
 
-            <Button
-                android:id="@+id/computingDeviceButton"
-                android:layout_width="250dp"
-                android:layout_height="100dp"
-                android:text="Worker"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="200dp"
-                android:textSize="25dp"
-                android:backgroundTint="#000080"
-                />
+
+                <TextView
+                    android:id="@+id/welcomeMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/robot_welcome"
+                    android:text="Welcome to SwiftX!"
+                    android:textSize="35sp"
+                    android:fontFamily="@font/cornerita"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="35dp"/>
+
+                <ImageView
+                    android:id="@+id/robot_welcome"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/robot_welcome" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rellay_1_2"
+                android:layout_below="@+id/rellay_1_1"
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/host_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    app:cardElevation="20dp"
+                    app:cardCornerRadius="20dp"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        >
+
+                        <ImageView
+                            android:id="@+id/robot_host"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/host"
+                            android:layout_centerHorizontal="true"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/robot_host"
+                            android:layout_marginVertical="10dp"
+                            android:text="Host"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="25dp"
+                            android:fontFamily="@font/cornerita"
+                            android:textColor="#00004f"
+                            />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginTop="40dp"
+                    android:id="@+id/worker_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    app:cardElevation="20dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_below="@+id/host_card"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        >
+
+                        <ImageView
+                            android:id="@+id/robot_worker"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/worker"
+                            android:layout_centerHorizontal="true"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/robot_worker"
+                            android:layout_marginVertical="10dp"
+                            android:text="Worker"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="25dp"
+                            android:fontFamily="@font/cornerita"
+                            android:textColor="#00004f"
+                            />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

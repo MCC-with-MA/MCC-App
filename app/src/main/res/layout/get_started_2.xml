@@ -39,7 +39,7 @@
                 android:textSize="35sp"
                 android:textAlignment="center"
                 android:fontFamily="@font/cornerita"
-                android:text="Welcome to Mobi Agent!"
+                android:text="Welcome to SwiftX!"
                 />
 
             <TextView
@@ -80,6 +80,7 @@
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:textSize="20sp" />
 
             </androidx.cardview.widget.CardView>
