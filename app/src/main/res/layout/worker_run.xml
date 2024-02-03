@@ -1,48 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#00004f">
 
-    <TextView
-        android:id="@+id/TextView01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:textSize="25sp"
-        android:text="Task executing..."
-        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/TextView02"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="175dp"
-        android:textSize="25sp"
-        android:text="Status: "
-        />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            >
 
-    <TextView
-        android:id="@+id/TextView03"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"
-        android:textSize="25sp"
-        android:text="Progress: "
-        />
+            <TextView
+                android:id="@+id/task_executing_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textSize="30sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/cornerita"
+                android:text="Task executing..."
+                />
 
-    <Button
-        android:id="@+id/terminateButton"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:text="Terminate"
-        android:layout_centerHorizontal="true"
-        android:textSize="25dp"
-        android:layout_marginTop="350dp"
-        />
+            <TextView
+                android:id="@+id/status_tv"
+                android:layout_below="@+id/task_executing_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:textSize="30sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/cornerita"
+                android:text="Status: "
+                />
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/progress_tv"
+                android:layout_below="@+id/status_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:textSize="30sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/cornerita"
+                android:text="Progress: "
+                />
+
+            <androidx.cardview.widget.CardView
+                android:layout_below="@+id/progress_tv"
+                android:id="@+id/worker_terminate_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="70dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:backgroundTint="#000080"
+                app:cardCornerRadius="25dp"
+                app:cardPreventCornerOverlap="true"
+                >
+
+                <Button
+                    android:id="@+id/terminateButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cornerita"
+                    android:paddingHorizontal="50dp"
+                    android:paddingVertical="10dp"
+                    android:backgroundTint="#000080"
+                    android:text="Terminate"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="30sp" />
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -18,17 +18,9 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.dashboard);
 
         CardView hostCard = findViewById(R.id.host_card);
-        hostCard.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(Dashboard.this, HostActivity.class));
-            }
-        });
+        hostCard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, HostActivity.class)));
 
         CardView workerCard = findViewById(R.id.worker_card);
-        workerCard.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(Dashboard.this, WorkerActivity.class));
-            }
-        });
+        workerCard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, WorkerActivity.class)));
     }
 }

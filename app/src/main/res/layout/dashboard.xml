@@ -24,7 +24,7 @@
                 android:id="@+id/rellay_1_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 >
 
 
@@ -41,10 +41,10 @@
 
                 <ImageView
                     android:id="@+id/robot_welcome"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_toRightOf="@+id/welcomeMsg"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/robot_welcome" />
 
             </RelativeLayout>
@@ -52,10 +52,9 @@
             <RelativeLayout
                 android:id="@+id/rellay_1_2"
                 android:layout_below="@+id/rellay_1_1"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="80dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_height="match_parent"
                 >
 
                 <androidx.cardview.widget.CardView

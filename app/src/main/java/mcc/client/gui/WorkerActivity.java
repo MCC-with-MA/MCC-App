@@ -10,6 +10,8 @@ import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import jade.android.AgentContainerHandler;
 import jade.android.AndroidHelper;
@@ -25,18 +27,30 @@ public class WorkerActivity extends Activity {
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
 
+    private String host;
+    private String port;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.worker);
 
-
-
         Button registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startContainer();
-                startActivity(new Intent(WorkerActivity.this, WorkerStartActivity.class));
+                Intent intent = new Intent(WorkerActivity.this, WorkerStartActivity.class);
+
+                EditText hostEditText = findViewById(R.id.hostEditText);
+                host = hostEditText.getText().toString();
+
+                EditText portEditText = findViewById(R.id.portEditText);
+                port = portEditText.getText().toString();
+
+                intent.putExtra("HOST", host);
+                intent.putExtra("PORT", port);
+
+                startActivity(intent);
             }
         });
 

@@ -43,15 +43,6 @@ public class HostActivity extends Activity {
             }
         });
 
-        ImageButton backButton = findViewById(R.id.backButton);
-
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
         Log.i("T", "AndroidMobilityActivity - onCreate()");
 
         if (jadeBinder == null) {

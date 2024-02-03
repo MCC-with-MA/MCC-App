@@ -21,11 +21,14 @@ public class WorkerStartActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.worker_start);
 
-        String host = "192.168.1.1";
-        String port = "99";
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
 
-        TextView textView = findViewById(R.id.TextView01);
-        textView.setText("Connected to $host:$port");
+        String host = bundle.getString("HOST");
+        String port = bundle.getString("PORT");
+
+        TextView textView = findViewById(R.id.host_and_port_msg);
+        textView.setText("Connected to " + host + ":" + port);
 
         Button startButton = findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener() {
