@@ -10,8 +10,8 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             >
 
@@ -55,9 +55,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_below="@+id/progress_tv"
                 android:id="@+id/worker_terminate_card"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="70dp"
+                android:layout_marginHorizontal="0dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="100dp"
                 android:backgroundTint="#000080"
@@ -67,7 +67,7 @@
 
                 <Button
                     android:id="@+id/terminateButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cornerita"
                     android:paddingHorizontal="50dp"

@@ -1,47 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#00004F">
 
-    <TextView
-        android:id="@+id/TextView01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:textSize="20dp"
-        android:text="Host Created..."
-        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/TextView02"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
-        android:textSize="20dp"
-        />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            >
 
-    <TextView
-        android:id="@+id/TextView03"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
-        android:textSize="20dp"
-        android:text="# agents"
-        />
+            <TextView
+                android:id="@+id/host_created_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textSize="30dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/cornerita"
+                android:text="Host Created..."
+                />
 
-    <Button
-        android:id="@+id/startTaskButton"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:text="Start"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
-        android:textSize="25dp"
-        />
+            <TextView
+                android:id="@+id/host_and_port"
+                android:layout_below="@+id/host_created_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:textSize="30dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/cornerita"
+                android:text="cdfefe:564"
+                />
 
-</RelativeLayout>
+            <ImageView
+                android:id="@+id/host_img"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="50dp"
+                android:layout_below="@+id/host_and_port"
+                android:src="@drawable/host"
+                android:layout_centerHorizontal="true"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:layout_below="@+id/host_img"
+                android:id="@+id/host_start_tasks_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="0dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="80dp"
+                android:backgroundTint="#000080"
+                app:cardCornerRadius="25dp"
+                app:cardPreventCornerOverlap="true"
+                >
+
+                <Button
+                    android:id="@+id/host_start_tasks_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cornerita"
+                    android:paddingHorizontal="50dp"
+                    android:paddingVertical="10dp"
+                    android:backgroundTint="#000080"
+                    android:text="Start Tasks"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="30sp" />
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

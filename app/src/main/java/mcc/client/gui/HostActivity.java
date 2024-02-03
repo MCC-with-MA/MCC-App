@@ -34,7 +34,7 @@ public class HostActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.host);
 
-        Button createTaskButton = findViewById(R.id.createTaskButton);
+        Button createTaskButton = findViewById(R.id.host_create_btn);
         createTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startContainer();

@@ -36,6 +36,7 @@
                 android:backgroundTint="@color/white"
                 android:layout_marginHorizontal="80dp"
                 android:layout_width="match_parent"
+                android:paddingLeft="20dp"
                 android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
                 android:inputType="text"
@@ -43,15 +44,35 @@
                 android:textSize="25dp"
                 />
 
-            <Button
-                android:id="@+id/createTaskButton"
-                android:layout_width="250dp"
-                android:layout_height="100dp"
-                android:text="Create"
+            <androidx.cardview.widget.CardView
+                android:layout_below="@+id/taskEditText"
+                android:id="@+id/host_create_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="70dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="100dp"
-                android:textSize="25dp"
-                />
+                android:layout_marginTop="50dp"
+                android:backgroundTint="#000080"
+                app:cardCornerRadius="25dp"
+                app:cardPreventCornerOverlap="true"
+                >
+
+                <Button
+                    android:id="@+id/host_create_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cornerita"
+                    android:paddingHorizontal="50dp"
+                    android:paddingVertical="10dp"
+                    android:backgroundTint="#000080"
+                    android:text="Create"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="30sp" />
+
+            </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
 

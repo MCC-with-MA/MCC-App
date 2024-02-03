@@ -31,7 +31,6 @@ public class WorkerRunActivity extends Activity {
         terminateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 showPopup(terminateButton);
-                //startActivity(new Intent(WorkerRunActivity.this, Dashboard.class));
             }
         });
     }

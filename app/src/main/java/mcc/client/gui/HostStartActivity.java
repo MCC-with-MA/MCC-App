@@ -46,10 +46,10 @@ public class HostStartActivity extends Activity {
         String host = "192.168.1.1";
         String port = "99";
 
-        TextView textView = findViewById(R.id.TextView02);
+        TextView textView = findViewById(R.id.host_and_port);
         textView.setText("$host:$port");
 
-        Button startTaskButton = findViewById(R.id.startTaskButton);
+        Button startTaskButton = findViewById(R.id.host_start_tasks_btn);
         startTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
