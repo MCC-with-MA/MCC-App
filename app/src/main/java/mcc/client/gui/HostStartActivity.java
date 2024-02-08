@@ -52,7 +52,6 @@ public class HostStartActivity extends Activity {
         Button startTaskButton = findViewById(R.id.host_start_tasks_btn);
         startTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startTaskButton.setText("Start Tasks");
                 try {
                     mainInterface = getAgent("m")
                             .getO2AInterface(MainInterface.class);
@@ -64,6 +63,12 @@ public class HostStartActivity extends Activity {
                 Log.i("T", "Available containers: "+availableContainers);
 
                 startMobileAgent("m1", AndroidMobileAgent.class.getName());
+
+                TextView upperMsg = findViewById(R.id.host_created_msg);
+                upperMsg.setText("Tasks Initialized");
+
+                startTaskButton.setText("Start Tasks");
+
                 startTaskButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

@@ -23,7 +23,7 @@
                 android:textSize="30dp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/cornerita"
-                android:text="Task Created..."
+                android:text="Host Created..."
                 />
 
             <TextView
