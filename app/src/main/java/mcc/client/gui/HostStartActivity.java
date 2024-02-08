@@ -47,11 +47,12 @@ public class HostStartActivity extends Activity {
         String port = "99";
 
         TextView textView = findViewById(R.id.host_and_port);
-        textView.setText("$host:$port");
+        textView.setText(host + " : " + port);
 
         Button startTaskButton = findViewById(R.id.host_start_tasks_btn);
         startTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                startTaskButton.setText("Start Tasks");
                 try {
                     mainInterface = getAgent("m")
                             .getO2AInterface(MainInterface.class);

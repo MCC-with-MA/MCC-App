@@ -23,7 +23,7 @@
                 android:textSize="30dp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/cornerita"
-                android:text="Host Created..."
+                android:text="Task Created..."
                 />
 
             <TextView
@@ -70,7 +70,7 @@
                     android:paddingHorizontal="50dp"
                     android:paddingVertical="10dp"
                     android:backgroundTint="#000080"
-                    android:text="Start Tasks"
+                    android:text="Initialize"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
