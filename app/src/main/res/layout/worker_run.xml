@@ -36,7 +36,7 @@
                 android:textSize="30sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/cornerita"
-                android:text="Status: "
+                android:text="Status: Executing"
                 />
 
             <TextView
@@ -49,7 +49,7 @@
                 android:textSize="30sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/cornerita"
-                android:text="Progress: "
+                android:text="Progress: 84%"
                 />
 
             <androidx.cardview.widget.CardView

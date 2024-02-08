@@ -38,7 +38,6 @@ public class WorkerActivity extends Activity {
         Button registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startContainer();
                 Intent intent = new Intent(WorkerActivity.this, WorkerStartActivity.class);
 
                 EditText hostEditText = findViewById(R.id.hostEditText);
@@ -46,6 +45,8 @@ public class WorkerActivity extends Activity {
 
                 EditText portEditText = findViewById(R.id.portEditText);
                 port = portEditText.getText().toString();
+
+                startContainer(host, port);
 
                 intent.putExtra("HOST", host);
                 intent.putExtra("PORT", port);
@@ -72,10 +73,11 @@ public class WorkerActivity extends Activity {
         }
     }
 
-    private void startContainer() {
+    private void startContainer(String host, String port) {
         Log.i("T", "AndroidMobilityActivity - Starting container ...");
 
-        Profile p = new ProfileImpl("192.168.8.109", 1099, null, false);
+        int portInt = Integer.parseInt(port);
+        Profile p = new ProfileImpl(host, portInt, null, false);
 
 //        if (AndroidHelper.isEmulator()) {
 //            // Emulator: this is needed to work with emulated devices

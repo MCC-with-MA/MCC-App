@@ -36,7 +36,7 @@
                 android:textSize="30dp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/cornerita"
-                android:text="cdfefe:564"
+                android:text="192.248.8.97 : 1022"
                 />
 
             <ImageView

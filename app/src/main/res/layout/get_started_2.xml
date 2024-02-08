@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/robot_get_started"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginHorizontal="50dp"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/white"
@@ -54,7 +54,7 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:fontFamily="@font/cornerita"
-                android:text="Welcome to Mobi Agent! Welcome to Mobi Agent! Welcome to Mobi Agent! Welcome to Mobi Agent! Welcome to Mobi Agent! Welcome to Mobi Agent! Welcome to Mobi Agent!"
+                android:text="Introducing SwiftX, a mobile application specifically designed to complete computationally intensive tasks of your Android device. But that's not all - SwiftX goes beyond individual device capabilities by allowing you to harness your device's idle processing power to assist nearby devices in completing intensive tasks too. Feel like getting help or contributing? Click on Get Started!"
                 />
 
             <androidx.cardview.widget.CardView
