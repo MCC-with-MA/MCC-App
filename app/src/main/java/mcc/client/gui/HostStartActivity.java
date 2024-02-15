@@ -43,15 +43,12 @@ public class HostStartActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.host_start);
 
-        String host = "192.168.1.1";
-        String port = "99";
-
-        TextView textView = findViewById(R.id.host_and_port);
-        textView.setText(host + " : " + port);
-
         Button startTaskButton = findViewById(R.id.host_start_tasks_btn);
         startTaskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+
+                startTaskButton.setText("Start Tasks");
                 try {
                     mainInterface = getAgent("m")
                             .getO2AInterface(MainInterface.class);
@@ -60,20 +57,21 @@ public class HostStartActivity extends Activity {
                     throw new RuntimeException(e);
                 }
                 ArrayList<ContainerID> availableContainers = mainInterface.getAvailableContainers();
+                Log.i("T", jadeBinder.getContainerHandler().getAgentContainer().getName());
                 Log.i("T", "Available containers: "+availableContainers);
 
-                startMobileAgent("m1", AndroidMobileAgent.class.getName());
-
-                TextView upperMsg = findViewById(R.id.host_created_msg);
-                upperMsg.setText("Tasks Initialized");
-
-                startTaskButton.setText("Start Tasks");
+                for (ContainerID containerId : availableContainers) {
+                    startMobileAgent(String.valueOf(containerId), AndroidMobileAgent.class.getName());
+                    Log.i("T",String.valueOf(containerId));
+                }
 
                 startTaskButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         try {
-                            getAgent("m1").getO2AInterface(AndroidMobileInterface.class).migrate();
+                            for (ContainerID containerId : availableContainers) {
+                                getAgent(String.valueOf(containerId)).getO2AInterface(AndroidMobileInterface.class).migrate(containerId);
+                            }
                         } catch (ControllerException e) {
                             Log.i("T", "AndroidMobilityActivity - Error connecting to AndroidMobileInterface");
                             throw new RuntimeException(e);
@@ -92,6 +90,17 @@ public class HostStartActivity extends Activity {
                 public void onServiceConnected(ComponentName className, IBinder service) {
                     jadeBinder = (RuntimeServiceBinder) service;
                     Log.i("T", "AndroidMobilityActivity - JADE binder initialized");
+//                    String containerName = jadeBinder.getContainerHandler().getAgentContainer().getName();
+//                    String address = containerName.replace("/JADE", "");
+//                    Log.i("T", jadeBinder.getContainerHandler().getAgentContainer().getName());
+////                String host = "192.168.1.1";
+////                String port = "99";
+//                    String[] sep = address.split(":");
+//                    String host = sep[0];
+//                    String port = sep[1];
+//
+//                    TextView textView = findViewById(R.id.host_and_port);
+//                    textView.setText(host + " : " + port);
                 }
                 public void onServiceDisconnected(ComponentName className) {
                     jadeBinder = null;

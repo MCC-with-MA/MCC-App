@@ -29,15 +29,15 @@ public class AndroidMobileAgent extends Agent implements AndroidMobileInterface 
         myLogger.log(Logger.INFO, "Agent "+getLocalName()+" - Just arrived in location = "+here().getName());
     }
 
-    public void migrate() {
+    public void migrate(ContainerID containerID) {
         myLogger.log(Logger.INFO, "Agent "+getLocalName()+" - Location = "+here().getName());
         addBehaviour(new OneShotBehaviour(){
             @Override
             public void action() {
                 myLogger.log(Logger.INFO, "Agent "+getLocalName()+" - Move request received");
-                Location dest = new ContainerID("Container-1", null);
-                myLogger.log(Logger.INFO, "Agent "+getLocalName()+" - Moving to "+dest.getName());
-                doMove(dest);
+//                Location dest = new ContainerID("Container-1", null);
+                myLogger.log(Logger.INFO, "Agent "+getLocalName()+" - Moving to "+containerID.getName());
+                doMove(containerID);
             }
         });
     }
