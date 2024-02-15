@@ -27,6 +27,7 @@ public class AndroidMobileAgent extends Agent implements AndroidMobileInterface 
     public void afterMove() {
         myLogger = Logger.getJADELogger(getClass().getName());
         myLogger.log(Logger.INFO, "Agent "+getLocalName()+" - Just arrived in location = "+here().getName());
+        setup();
     }
 
     public void migrate(ContainerID containerID) {

@@ -40,15 +40,15 @@ public class WorkerStartActivity extends Activity {
         Button startButton = findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                try {
-                    String containerName = jadeBinder.getContainerHandler().getAgentContainer().getContainerName();
-                    Log.i("T",String.valueOf(containerName));
-                    AgentController agent = jadeBinder.getContainerHandler().getAgentContainer().getAgent(containerName);
-                    agent.start();
-                } catch (ControllerException e) {
-                    throw new RuntimeException(e);
-                }
-
+//                try {
+//                    String containerName = jadeBinder.getContainerHandler().getAgentContainer().getContainerName();
+//                    Log.i("T",String.valueOf(containerName));
+//                    AgentController agent = jadeBinder.getContainerHandler().getAgentContainer().getAgent(containerName);
+//                    agent.start();
+//                } catch (ControllerException e) {
+//                    throw new RuntimeException(e);
+//                }
+//
                 startActivity(new Intent(WorkerStartActivity.this, WorkerRunActivity.class));
             }
         });
