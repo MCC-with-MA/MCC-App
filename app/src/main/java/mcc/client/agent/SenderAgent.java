@@ -13,6 +13,7 @@ public class SenderAgent extends Agent implements SenderInterface{
 
     @Override
     public void setup() {
+        registerO2AInterface(SenderInterface.class, this);
         myLogger.log(Logger.INFO, "Agent "+getLocalName()+" - Running at "+here().getName()+" ...");
     }
 

@@ -70,7 +70,7 @@ public class HostStartActivity extends Activity {
                 Log.i("T", jadeBinder.getContainerHandler().getAgentContainer().getName());
                 Log.i("T", "Available containers: "+availableContainers);
 
-                startSenderAgent("sender", SenderAgent.class.getName());
+
                 Context appContext = getApplicationContext();
                 String javaCode = readJavaCodeFromFile(appContext.getAssets());
                 ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
@@ -81,7 +81,7 @@ public class HostStartActivity extends Activity {
                 msg.setContent(javaCode);
 
                 try {
-                    senderInterface = getAgent("m")
+                    senderInterface = getAgent("sender")
                             .getO2AInterface(SenderInterface.class);
                 } catch (ControllerException e) {
                     Log.i("T", "AndroidMobilityActivity - Error connecting to MainInterface");
@@ -195,34 +195,34 @@ public class HostStartActivity extends Activity {
         return content.toString();
     }
 
-    private void startSenderAgent(String name, String agentClass) {
-        jadeBinder.getContainerHandler().createNewAgent(name, agentClass, null, new RuntimeCallback<AgentHandler>() {
-
-            @Override
-            public void onSuccess(AgentHandler agent) {
-                Log.i("T", "AndroidMobilityActivity - Mobile agent ("+name+"/"+agentClass+") successfully created");
-                try {
-                    Log.i("T", "AndroidMobilityActivity - Mobile agent "+agent.getAgentController().getName());
-                } catch (StaleProxyException e) {
-                    throw new RuntimeException(e);
-                }
-                agent.start(new RuntimeCallback<Void>(){
-                    @Override
-                    public void onSuccess(Void arg0) {
-                        Log.i("T", "AndroidMobilityActivity - Mobile agent ("+name+"/"+agentClass+") successfully started");
-                    }
-
-                    @Override
-                    public void onFailure(Throwable th) {
-                        Log.w("T", "AndroidMobilityActivity - Error starting mobile agent ("+name+"/"+agentClass+")", th);
-                    }
-                });
-            }
-
-            @Override
-            public void onFailure(Throwable th) {
-                Log.w("T", "AndroidMobilityActivity - Error creating mobile agent ("+name+"/"+agentClass+")", th);
-            }
-        });
-    }
+//    private void startSenderAgent(String name, String agentClass) {
+//        jadeBinder.getContainerHandler().createNewAgent(name, agentClass, null, new RuntimeCallback<AgentHandler>() {
+//
+//            @Override
+//            public void onSuccess(AgentHandler agent) {
+//                Log.i("T", "AndroidMobilityActivity - Mobile agent ("+name+"/"+agentClass+") successfully created");
+//                try {
+//                    Log.i("T", "AndroidMobilityActivity - Mobile agent "+agent.getAgentController().getName());
+//                } catch (StaleProxyException e) {
+//                    throw new RuntimeException(e);
+//                }
+//                agent.start(new RuntimeCallback<Void>(){
+//                    @Override
+//                    public void onSuccess(Void arg0) {
+//                        Log.i("T", "AndroidMobilityActivity - Mobile agent ("+name+"/"+agentClass+") successfully started");
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Throwable th) {
+//                        Log.w("T", "AndroidMobilityActivity - Error starting mobile agent ("+name+"/"+agentClass+")", th);
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onFailure(Throwable th) {
+//                Log.w("T", "AndroidMobilityActivity - Error creating mobile agent ("+name+"/"+agentClass+")", th);
+//            }
+//        });
+//    }
 }
