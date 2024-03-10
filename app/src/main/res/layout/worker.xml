@@ -45,6 +45,8 @@
                     android:paddingVertical="10dp"
                     android:textSize="30dp"
                     android:fontFamily="@font/cornerita"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     />
 
                 <EditText
@@ -63,6 +65,8 @@
                     android:paddingVertical="10dp"
                     android:textSize="30dp"
                     android:fontFamily="@font/cornerita"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     />
 
                 <androidx.cardview.widget.CardView

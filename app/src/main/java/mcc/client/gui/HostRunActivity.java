@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.Gravity;
@@ -29,11 +30,25 @@ public class HostRunActivity extends Activity {
 
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
+    private CountDownTimer timer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.host_run);
+
+        // Start a countdown timer for 10 seconds
+        timer = new CountDownTimer(10 * 1000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // Do nothing, or update UI to show remaining time
+            }
+
+            public void onFinish() {
+                // Go back to the dashboard activity
+                startActivity(new Intent(HostRunActivity.this, Dashboard.class));
+                finish(); // Optional, to close this activity
+            }
+        }.start();
 
         Button terminateButton = findViewById(R.id.terminateButton);
         terminateButton.setOnClickListener(new View.OnClickListener() {
