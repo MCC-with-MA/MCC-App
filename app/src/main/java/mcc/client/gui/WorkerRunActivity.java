@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,6 +14,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.PopupWindow;
+import android.widget.TextView;
+
+import java.util.Locale;
 
 import jade.android.RuntimeServiceBinder;
 
@@ -21,11 +25,32 @@ public class WorkerRunActivity extends Activity {
 
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
+    private CountDownTimer timer;
+    private TextView remainingTimeTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.worker_run);
+
+        remainingTimeTextView = findViewById(R.id.worker_remainingTime);
+
+        // Start a countdown timer for 2 minutes
+        timer = new CountDownTimer(2 * 60 * 1000, 1000) {
+            long startTime = System.currentTimeMillis();
+
+            public void onTick(long millisUntilFinished) {
+                long elapsedTime = System.currentTimeMillis() - startTime;
+                long minutes = elapsedTime / (60 * 1000);
+                long seconds = (elapsedTime % (60 * 1000)) / 1000;
+                remainingTimeTextView.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+            }
+            public void onFinish() {
+                // Go back to the dashboard activity
+                startActivity(new Intent(WorkerRunActivity.this, Dashboard.class));
+                finish();
+            }
+        }.start();
 
         Button terminateButton = findViewById(R.id.terminateButton);
         terminateButton.setOnClickListener(new View.OnClickListener() {

@@ -14,70 +14,94 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center">
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/remainingTime_card"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#F7F7F7"
+                android:paddingHorizontal="20dp"
+                app:cardCornerRadius="20dp"
+                >
+
+                <TextView
+                    android:id="@+id/remainingTime"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:fontFamily="@font/cornerita"
+                    android:text="00:00"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="#000080"
+                    android:textSize="50dp" />
+
+            </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/tasks_executing_msg"
+                android:layout_below="@id/remainingTime_card"
+                android:layout_marginTop="50dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:textSize="30dp"
-                android:textColor="@color/white"
                 android:fontFamily="@font/cornerita"
                 android:text="Tasks executing..."
-                />
+                android:textColor="@color/white"
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/status_tv_host"
-                android:layout_below="@id/tasks_executing_msg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_below="@id/tasks_executing_msg"
                 android:layout_centerHorizontal="true"
-                android:textSize="30dp"
-                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/cornerita"
                 android:text="Status : Executing"
-                />
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
 
             <TextView
                 android:id="@+id/progress_tv_host"
-                android:layout_below="@id/status_tv_host"
-                android:layout_marginTop="50dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/status_tv_host"
                 android:layout_centerHorizontal="true"
-                android:textSize="30dp"
-                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/cornerita"
                 android:text="Progress : 65%"
-                />
+                android:textColor="@color/white"
+                android:textSize="25sp" />
 
             <androidx.cardview.widget.CardView
-                android:layout_below="@+id/progress_tv_host"
                 android:id="@+id/worker_terminate_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="0dp"
+                android:layout_below="@+id/progress_tv_host"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="80dp"
+                android:layout_marginHorizontal="0dp"
+                android:layout_marginTop="100dp"
                 android:backgroundTint="#000080"
                 app:cardCornerRadius="25dp"
-                app:cardPreventCornerOverlap="true"
-                >
+                app:cardPreventCornerOverlap="true">
 
                 <Button
                     android:id="@+id/terminateButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="#000080"
                     android:fontFamily="@font/cornerita"
                     android:paddingHorizontal="50dp"
                     android:paddingVertical="10dp"
-                    android:backgroundTint="#000080"
                     android:text="Terminate"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
