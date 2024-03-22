@@ -21,6 +21,7 @@ import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
+import jade.wrapper.ControllerException;
 import jade.wrapper.StaleProxyException;
 import mcc.client.agent.ReceiverAgent;
 
@@ -49,7 +50,7 @@ public class WorkerActivity extends Activity {
                 port = portEditText.getText().toString();
 
                 startContainer(host, port);
-                startReceiverAgent("receiver", ReceiverAgent.class.getName());
+
 
                 intent.putExtra("HOST", host);
                 intent.putExtra("PORT", port);
@@ -96,6 +97,11 @@ public class WorkerActivity extends Activity {
             @Override
             public void onSuccess(AgentContainerHandler handler) {
                 Log.i("T", "AndroidMobilityActivity - Container successfully created");
+                try {
+                    startReceiverAgent(handler, "receiver-"+jadeBinder.getContainerHandler().getAgentContainer().getContainerName(), ReceiverAgent.class.getName());
+                } catch (ControllerException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
             @Override
@@ -105,8 +111,8 @@ public class WorkerActivity extends Activity {
         });
     }
 
-    private void startReceiverAgent(String name, String agentClass) {
-        jadeBinder.getContainerHandler().createNewAgent(name, agentClass, null, new RuntimeCallback<AgentHandler>() {
+    private void startReceiverAgent(AgentContainerHandler handler, String name, String agentClass) {
+        handler.createNewAgent(name, agentClass, null, new RuntimeCallback<AgentHandler>() {
 
             @Override
             public void onSuccess(AgentHandler agent) {

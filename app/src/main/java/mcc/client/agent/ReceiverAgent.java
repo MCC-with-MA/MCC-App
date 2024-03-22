@@ -20,13 +20,10 @@ public class ReceiverAgent extends Agent {
             @Override
             public void action() {
                 ACLMessage msg = receive();
-                Log.i("T", msg.getContent());
-
                 if (msg != null) {
-                    Log.i("T", "Null Message");
-
-                    myLogger.log(Logger.INFO, "Agent " + getLocalName() + " - Running at " + here().getName() + " ...");
-                } else block();
+                    Log.i("T", "Message Received ...");
+                    Log.i("T", msg.getContent());
+                }
             }
         });
     }
