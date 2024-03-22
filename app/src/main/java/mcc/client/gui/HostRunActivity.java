@@ -18,6 +18,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.PopupWindow;
+import android.widget.TextView;
+
+import java.util.Locale;
 
 import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
@@ -31,22 +34,26 @@ public class HostRunActivity extends Activity {
     private RuntimeServiceBinder jadeBinder;
     private ServiceConnection serviceConnection;
     private CountDownTimer timer;
+    private TextView remainingTimeTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.host_run);
 
-        // Start a countdown timer for 10 seconds
-        timer = new CountDownTimer(10 * 1000, 1000) {
-            public void onTick(long millisUntilFinished) {
-                // Do nothing, or update UI to show remaining time
-            }
+        remainingTimeTextView = findViewById(R.id.remainingTime);
 
+        // Start a countdown timer for 1 minute
+        timer = new CountDownTimer(1 * 60 * 1000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                long minutes = millisUntilFinished / (60 * 1000);
+                long seconds = (millisUntilFinished % (60 * 1000)) / 1000;
+                remainingTimeTextView.setText("Time remaining: " + String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+            }
             public void onFinish() {
                 // Go back to the dashboard activity
                 startActivity(new Intent(HostRunActivity.this, Dashboard.class));
-                finish(); // Optional, to close this activity
+                finish();
             }
         }.start();
 

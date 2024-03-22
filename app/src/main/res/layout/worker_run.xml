@@ -15,8 +15,33 @@
             android:layout_gravity="center"
             >
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/remainingTime_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#F7F7F7"
+                android:paddingHorizontal="20dp"
+                app:cardCornerRadius="20dp"
+                >
+
+                <TextView
+                    android:id="@+id/worker_remainingTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="30dp"
+                    android:layout_marginHorizontal="30dp"
+                    android:fontFamily="@font/cornerita"
+                    android:text="Time remaining: 01:00"
+                    android:textColor="#000080"
+                    android:textSize="30dp" />
+
+            </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/task_executing_tv"
+                android:layout_below="@id/remainingTime_card"
+                android:layout_marginTop="50dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
