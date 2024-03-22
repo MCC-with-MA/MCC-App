@@ -19,6 +19,7 @@ public class SenderAgent extends Agent implements SenderInterface{
 
     public void sendMessage(ACLMessage message){
         send(message);
+        myLogger.log(Logger.INFO, "Agent "+getLocalName()+" -  Sending Message ...");
     }
 
 

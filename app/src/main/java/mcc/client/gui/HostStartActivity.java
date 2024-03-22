@@ -75,7 +75,10 @@ public class HostStartActivity extends Activity {
                 String javaCode = readJavaCodeFromFile(appContext.getAssets());
                 ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
                 for (ContainerID containerId : availableContainers) {
-                    AID receiver = new AID("receiver@"+String.valueOf(containerId));
+                    String ID =  "receiver-"+String.valueOf(containerId.getName())+'@'+jadeBinder.getContainerHandler().getAgentContainer().getName();
+                    Log.i("T", ID);
+                    AID receiver = new AID(ID);
+                    Log.i("T", receiver.getName());
                     msg.addReceiver(receiver);
                 }
                 msg.setContent(javaCode);
