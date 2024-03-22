@@ -43,12 +43,15 @@ public class HostRunActivity extends Activity {
 
         remainingTimeTextView = findViewById(R.id.remainingTime);
 
-        // Start a countdown timer for 1 minute
-        timer = new CountDownTimer(1 * 60 * 1000, 1000) {
+        // Start a countdown timer for 2 minutes
+        timer = new CountDownTimer(2 * 60 * 1000, 1000) {
+            long startTime = System.currentTimeMillis();
+
             public void onTick(long millisUntilFinished) {
-                long minutes = millisUntilFinished / (60 * 1000);
-                long seconds = (millisUntilFinished % (60 * 1000)) / 1000;
-                remainingTimeTextView.setText("Time remaining: " + String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+                long elapsedTime = System.currentTimeMillis() - startTime;
+                long minutes = elapsedTime / (60 * 1000);
+                long seconds = (elapsedTime % (60 * 1000)) / 1000;
+                remainingTimeTextView.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
             }
             public void onFinish() {
                 // Go back to the dashboard activity

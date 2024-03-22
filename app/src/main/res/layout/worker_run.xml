@@ -17,7 +17,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/remainingTime_card"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:backgroundTint="#F7F7F7"
@@ -29,12 +29,14 @@
                     android:id="@+id/worker_remainingTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="30dp"
-                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginHorizontal="20dp"
                     android:fontFamily="@font/cornerita"
-                    android:text="Time remaining: 01:00"
+                    android:text="00:00"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:textColor="#000080"
-                    android:textSize="30dp" />
+                    android:textSize="50dp" />
 
             </androidx.cardview.widget.CardView>
 
@@ -45,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/cornerita"
                 android:text="Task executing..."
@@ -57,11 +59,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:textSize="30sp"
+                android:layout_marginTop="20dp"
+                android:textSize="25sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/cornerita"
-                android:text="Status: Executing"
+                android:text="Status : Executing"
                 />
 
             <TextView
@@ -70,11 +72,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:textSize="30sp"
+                android:layout_marginTop="20dp"
+                android:textSize="25sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/cornerita"
-                android:text="Progress: 84%"
+                android:text="Progress : 84%"
                 />
 
             <androidx.cardview.widget.CardView

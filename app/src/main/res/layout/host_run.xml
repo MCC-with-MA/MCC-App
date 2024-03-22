@@ -16,7 +16,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/remainingTime_card"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:backgroundTint="#F7F7F7"
@@ -26,14 +26,16 @@
 
                 <TextView
                     android:id="@+id/remainingTime"
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="30dp"
-                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginHorizontal="20dp"
                     android:fontFamily="@font/cornerita"
-                    android:text="Time remaining: 01:00"
+                    android:text="00:00"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:textColor="#000080"
-                    android:textSize="30dp" />
+                    android:textSize="50dp" />
 
             </androidx.cardview.widget.CardView>
 
@@ -47,7 +49,7 @@
                 android:fontFamily="@font/cornerita"
                 android:text="Tasks executing..."
                 android:textColor="@color/white"
-                android:textSize="30dp" />
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/status_tv_host"
@@ -55,11 +57,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tasks_executing_msg"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/cornerita"
                 android:text="Status : Executing"
                 android:textColor="@color/white"
-                android:textSize="30dp" />
+                android:textSize="25sp" />
 
 
             <TextView
@@ -68,11 +70,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/status_tv_host"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/cornerita"
                 android:text="Progress : 65%"
                 android:textColor="@color/white"
-                android:textSize="30dp" />
+                android:textSize="25sp" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/worker_terminate_card"
