@@ -1,5 +1,7 @@
 package mcc.client.gui;
 
+import static jade.core.MicroRuntime.getAgent;
+
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -12,10 +14,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
+import jade.core.ContainerID;
 import jade.wrapper.AgentController;
 import jade.wrapper.ControllerException;
+import mcc.client.agent.MainInterface;
+import mcc.client.agent.SenderInterface;
 
 
 public class WorkerStartActivity extends Activity {

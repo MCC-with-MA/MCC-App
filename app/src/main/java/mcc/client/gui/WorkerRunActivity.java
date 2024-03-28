@@ -1,10 +1,13 @@
 package mcc.client.gui;
 
+import static jade.core.MicroRuntime.getAgent;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,9 +19,16 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import jade.android.RuntimeServiceBinder;
+import jade.core.AID;
+import jade.core.ContainerID;
+import jade.lang.acl.ACLMessage;
+import jade.wrapper.ControllerException;
+import mcc.client.agent.MainInterface;
+import mcc.client.agent.SenderInterface;
 
 
 public class WorkerRunActivity extends Activity {
@@ -27,6 +37,8 @@ public class WorkerRunActivity extends Activity {
     private ServiceConnection serviceConnection;
     private CountDownTimer timer;
     private TextView remainingTimeTextView;
+    private MainInterface mainInterface;
+    private SenderInterface senderInterface;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +90,36 @@ public class WorkerRunActivity extends Activity {
         Button yesBtn = popupView.findViewById(R.id.yesbtn);
         yesBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                try {
+                    mainInterface = getAgent("m")
+                            .getO2AInterface(MainInterface.class);
+                } catch (ControllerException e) {
+                    Log.i("T", "AndroidMobilityActivity - Error connecting to MainInterface");
+                    throw new RuntimeException(e);
+                }
+                ArrayList<ContainerID> availableContainers = mainInterface.getAvailableContainers();
+                Log.i("T", jadeBinder.getContainerHandler().getAgentContainer().getName());
+
+
+                ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
+                for (ContainerID containerId : availableContainers) {
+                    String ID =  "receiver-"+String.valueOf(containerId.getName())+'@'+jadeBinder.getContainerHandler().getAgentContainer().getName();
+                    Log.i("T", ID);
+                    AID receiver = new AID(ID);
+                    Log.i("T", receiver.getName());
+                    msg.addReceiver(receiver);
+                }
+                msg.setContent("Request to Continue Task");
+
+                try {
+                    senderInterface = getAgent("sender")
+                            .getO2AInterface(SenderInterface.class);
+                } catch (
+                        ControllerException e) {
+                    Log.i("T", "AndroidMobilityActivity - Error connecting to MainInterface");
+                    throw new RuntimeException(e);
+                }
+                senderInterface.sendMessage(msg);
                 startActivity(new Intent(WorkerRunActivity.this, Dashboard.class));
                 popupWindow.dismiss();
             }
