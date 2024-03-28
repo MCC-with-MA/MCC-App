@@ -22,7 +22,7 @@
                 android:layout_centerHorizontal="true"
                 android:backgroundTint="#F7F7F7"
                 android:paddingHorizontal="20dp"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="0dp"
                 >
 
                 <TextView
