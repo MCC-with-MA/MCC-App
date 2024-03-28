@@ -20,9 +20,11 @@ import jade.android.RuntimeService;
 import jade.android.RuntimeServiceBinder;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
+import jade.wrapper.ControllerException;
 import jade.wrapper.StaleProxyException;
 import mcc.client.agent.AndroidMobileAgent;
 import mcc.client.agent.MainAgent;
+import mcc.client.agent.ReceiverAgent;
 import mcc.client.agent.SenderAgent;
 
 
@@ -82,8 +84,13 @@ public class HostActivity extends Activity {
             @Override
             public void onSuccess(AgentContainerHandler handler) {
                 Log.i("T", "AndroidMobilityActivity - Container successfully created");
-                startMainAgent(handler);
-                startSenderAgent(handler, "sender", SenderAgent.class.getName());
+                try {
+                    startMainAgent(handler);
+                    startSenderAgent(handler, "sender", SenderAgent.class.getName());
+                    startReceiverAgent(handler, "receiver-"+jadeBinder.getContainerHandler().getAgentContainer().getContainerName(), ReceiverAgent.class.getName());
+                } catch (ControllerException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
             @Override
@@ -148,5 +155,36 @@ public class HostActivity extends Activity {
             }
         });
 
+    }
+
+    private void startReceiverAgent(AgentContainerHandler handler, String name, String agentClass) {
+        handler.createNewAgent(name, agentClass, null, new RuntimeCallback<AgentHandler>() {
+
+            @Override
+            public void onSuccess(AgentHandler agent) {
+                Log.i("T", "AndroidMobilityActivity - Mobile agent ("+name+"/"+agentClass+") successfully created");
+                try {
+                    Log.i("T", "AndroidMobilityActivity - Mobile agent "+agent.getAgentController().getName());
+                } catch (StaleProxyException e) {
+                    throw new RuntimeException(e);
+                }
+                agent.start(new RuntimeCallback<Void>(){
+                    @Override
+                    public void onSuccess(Void arg0) {
+                        Log.i("T", "AndroidMobilityActivity - Mobile agent ("+name+"/"+agentClass+") successfully started");
+                    }
+
+                    @Override
+                    public void onFailure(Throwable th) {
+                        Log.w("T", "AndroidMobilityActivity - Error starting mobile agent ("+name+"/"+agentClass+")", th);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Throwable th) {
+                Log.w("T", "AndroidMobilityActivity - Error creating mobile agent ("+name+"/"+agentClass+")", th);
+            }
+        });
     }
 }
